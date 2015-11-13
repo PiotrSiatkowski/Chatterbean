@@ -119,11 +119,11 @@ public class Package {
 	}
 
 	private File getModuleDirectory(String moduleDirectory) {
-		File place = new File(".");
+		File place = new File(".").getAbsoluteFile();
 		while(place != null && place.isDirectory()) {
 			List<String> list = Arrays.asList(place.list());
 			if(list.contains(moduleDirectory))
-				return new File(list.get(list.indexOf(moduleDirectory)));
+				return new File(place.getPath() + "/" + list.get(list.indexOf(moduleDirectory)));
 			else
 				place = place.getParentFile();
 		}
