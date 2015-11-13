@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,11 +97,12 @@ public class Package {
 
 		List<Class<T>> result = new LinkedList<>();
 
-		File place = new File("../" + moduleDirectory + "/src/" + path);
+		// Search file tree in order to find moduleDirectory.
+		File place = getModuleDirectory(moduleDirectory);
+		if(place != null && place.isDirectory()) {
+			place = new File(place.getPath() + "/src/" + path);
 
-		if(place.exists() && place.isDirectory()) {
 			String[] classes = place.list();
-
 			for(String className : classes) {
 				Class<?> type;
 				try {
@@ -114,5 +116,18 @@ public class Package {
 		}
 
 		return result;
+	}
+
+	private File getModuleDirectory(String moduleDirectory) {
+		File place = new File(".");
+		while(place != null && place.isDirectory()) {
+			List<String> list = Arrays.asList(place.list());
+			if(list.contains(moduleDirectory))
+				return new File(list.get(list.indexOf(moduleDirectory)));
+			else
+				place = place.getParentFile();
+		}
+
+		return null;
 	}
 }
