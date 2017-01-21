@@ -52,33 +52,32 @@ public class UserFunctor extends SpecialSettingFunctor {
 		else {
 			Sentence newUser = transformations.makeSentence(input);	
 			Sentence currentUser = context.getSetting(AliceBot.USER);
-			
-			if(!newUser.equals(currentUser)) {
-				Explorer explorer = callback.getExplorer();
-				explorer.updatePredicatesFile(context);
-				
-				context.setSetting(AliceBot.USER, newUser);
-				
-				// Parsing new user predicates file.
-				try {
-					SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-					
-					context.clearPredicates();
-					
-					PredicatesHandler predicatesHandler = new PredicatesHandler(context);
-					parser.parse(explorer.getPredicates(newUser.getOriginal()), predicatesHandler);
-				} catch(SAXException ignored) {
-					new Logger().writeMessage("SAXException", "Error in parsing new user predicates file.");
-				} catch(ParserConfigurationException ignored) {
-					new Logger().writeMessage("ParserConfigurationException", "Error in parsing new user predicates file.");
-				} catch(IOException ignored) {
-					new Logger().writeMessage("IOException", "Error in parsing new user predicates file.");
-				} catch(AliceBotExplorerException ignored) {
-					new Logger().writeMessage("AliceBotExplorerException", "Error in parsing new user predicates file.");
-				} catch(RuntimeException ignored) {
-					new Logger().writeMessage("Exception", "Error in parsing new user predicates file.");
-				}
-			}
+
+            // Parsing new user predicates file.
+            try {
+                if(!newUser.equals(currentUser)) {
+                    Explorer explorer = callback.getExplorer();
+                    explorer.updatePredicatesFile(context);
+
+                    context.setSetting(AliceBot.USER, newUser);
+                    SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+
+                    context.clearPredicates();
+
+                    PredicatesHandler predicatesHandler = new PredicatesHandler(context);
+                    parser.parse(explorer.getPredicates(newUser.getOriginal()), predicatesHandler);
+                }
+            } catch(SAXException ignored) {
+                new Logger().writeMessage("SAXException", "Error in parsing new user predicates file.");
+            } catch(ParserConfigurationException ignored) {
+                new Logger().writeMessage("ParserConfigurationException", "Error in parsing new user predicates file.");
+            } catch(IOException ignored) {
+                new Logger().writeMessage("IOException", "Error in parsing new user predicates file.");
+            } catch(AliceBotExplorerException ignored) {
+                new Logger().writeMessage("AliceBotExplorerException", "Error in parsing new user predicates file.");
+            } catch(RuntimeException ignored) {
+                new Logger().writeMessage("Exception", "Error in parsing new user predicates file.");
+            }
 		}
 		
 		return null;

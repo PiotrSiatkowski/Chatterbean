@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><aiml>
+	<topic name="Family">
+		<category>
+			<pattern>DO YOU HAVE ANY BROTHERS?</pattern>
+			<template>
+				<condition>
+					<li interlocutor_has_brother="true">Yes, I have one brother!</li>
+					<li>I do not have any brothers :(</li>
+				</condition>
+			</template>
+		</category>
+	</topic>
+</aiml>

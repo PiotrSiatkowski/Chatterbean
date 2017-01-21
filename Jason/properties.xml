@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><context>
+  <!--CurrentBot predicates are set at load time, and cannot be changed at runtime.-->
+  <bot name="nationality" value="polish"/>
+  <bot name="age" value="25"/>
+  <bot name="hobby" value="gaming"/>
+  <bot name="name" value="Jason"/>
+</context>

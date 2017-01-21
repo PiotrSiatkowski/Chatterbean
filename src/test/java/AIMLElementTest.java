@@ -21,4 +21,5 @@ public class AIMLElementTest {
         AIMLElement date = new Date();
         template.appendChild(date);
     }
+
 }

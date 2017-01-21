@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><context>
+  <!--Default values for predicates, can be changed later at runtime.-->
+  <set name="interlocutor_has_brother" value="true"/>
+</context>

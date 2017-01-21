@@ -55,11 +55,11 @@ public class Context {
 
 	/* Method Section */
 
-	public void appendRequest(Request request) {
+    void appendRequest(Request request) {
 		requests.add(0, request);
 	}
 
-	public void appendResponse(Response response) {
+    void appendResponse(Response response) {
 		responses.add(0, response);
 		settings.put(AliceBot.THAT, response.getSentence(response.size() - 1));
 	}

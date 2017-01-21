@@ -18,9 +18,8 @@ package com.thetruthbeyond.chatterbean.parser.api;
 
 public class AliceBotParserConfigurationException extends Exception {
 
-	private static final long serialVersionUID = 7L;
-
-	public AliceBotParserConfigurationException(Exception e) {
+    AliceBotParserConfigurationException(Exception e) {
 		super(e);
 	}
+
 }

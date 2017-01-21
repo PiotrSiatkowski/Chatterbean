@@ -11,4 +11,5 @@ public class ThinkTest {
     public void createThinkElementTest() throws Exception {
         Think think = new Think();
     }
+
 }

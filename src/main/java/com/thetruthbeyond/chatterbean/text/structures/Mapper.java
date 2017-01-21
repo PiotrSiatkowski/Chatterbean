@@ -33,14 +33,14 @@ class Mapper {
 			mappings.add(i);
 	}
 
-	public void prepare(String find, String replace) {
+    void prepare(String find, String replace) {
 		fl = find.length();
 		rl = replace.length();
 
 		indexOffset = 0;
 	}
 
-	public void updateMapping(int beginIndex) {
+    void updateMapping(int beginIndex) {
 		if(fl - rl != 0) {
 			int index = beginIndex + 1 + indexOffset;
 			for(int n = fl - 1; n > 0; --n) {
@@ -55,7 +55,7 @@ class Mapper {
 		}
 	}
 
-	public Integer[] obtainMappings() {
+    Integer[] obtainMappings() {
 		Integer[] table = new Integer[mappings.size()];
 
 		for(int i = 0, n = mappings.size(); i != n; ++i)

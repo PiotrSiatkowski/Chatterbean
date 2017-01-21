@@ -21,7 +21,7 @@ import java.util.Properties;
 
 import com.thetruthbeyond.chatterbean.AliceBot;
 import com.thetruthbeyond.chatterbean.Context;
-import com.thetruthbeyond.chatterbean.graph.Graphmaster;
+import com.thetruthbeyond.chatterbean.graph.Graph;
 import com.thetruthbeyond.chatterbean.parser.aiml.AIMLParser;
 import com.thetruthbeyond.chatterbean.parser.aiml.AIMLParserConfigurationException;
 import com.thetruthbeyond.chatterbean.parser.aiml.AIMLParserException;
@@ -74,18 +74,21 @@ public class BotFactory {
 				try {
 					Context context = contextParser.parse(properties, predicates);
 					Transformations transformations = transformationsParser.parse(splitters, substitutions);
-					Graphmaster graphmaster = aimlParser.parse(new Graphmaster(), transformations, categories);
+					Graph graph = aimlParser.parse(new Graph(), transformations, categories);
 
-					bot =  new AliceBot(explorer, context, graphmaster, transformations);
+					bot = new AliceBot(explorer, context, graph, transformations);
 					bot.setPassword(configuration.getProperty("password", ""));
 
 				} catch(AIMLParserException | RuntimeException | SAXException | IOException exception) {
 					throw new AliceBotParserException(exception.getMessage(), exception);
 				}
 			} finally {
-				if(categories != null)
-					for(InputStream stream : categories)
-						stream.close();
+				if(categories != null) {
+                    try {
+                        for (InputStream stream : categories)
+                            stream.close();
+                    } catch (IOException ignored) {}
+                }
 			}
 
 			return bot;

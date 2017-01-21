@@ -24,7 +24,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import com.thetruthbeyond.chatterbean.aiml.AimlRegistrationOffice;
-import com.thetruthbeyond.chatterbean.graph.Graphmaster;
+import com.thetruthbeyond.chatterbean.graph.Graph;
 import com.thetruthbeyond.chatterbean.text.structures.Transformations;
 import org.xml.sax.SAXException;
 
@@ -44,17 +44,17 @@ public class AIMLParser {
 		}
 	}
 	
-	public Graphmaster parse(Graphmaster graphmaster, Transformations transformations, InputStream... sources) throws AIMLParserException {
+	public Graph parse(Graph graph, Transformations transformations, InputStream... sources) throws AIMLParserException {
 		try {
 			handler.setTransformations(transformations);
 			for(InputStream aiml : sources)
 				parser.parse(aiml, handler);
 
-			graphmaster.append(handler.unload());
+			graph.append(handler.unload());
 		} catch(SAXException | IOException exception) {
 			throw new AIMLParserException(exception.getMessage(), exception);
 		}
 
-		return graphmaster;
+		return graph;
 	}
 }

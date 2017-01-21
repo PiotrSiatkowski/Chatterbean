@@ -58,7 +58,7 @@ public class Learn extends TemplateElement {
 			URL url = new URL(address);
 
 			AIMLParser parser = new AIMLParser();
-			parser.parse(bot.getGraphmaster(), bot.getTransformations(), url.openStream());
+			parser.parse(bot.getGraph(), bot.getTransformations(), url.openStream());
 		} catch(MalformedURLException exception) {
 			throw new RuntimeException("Malformed URL", exception);
 		} catch(AIMLParserException | AIMLParserConfigurationException | IOException | RuntimeException exception) {

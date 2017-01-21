@@ -29,7 +29,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class AIMLHandler extends DefaultHandler {
+class AIMLHandler extends DefaultHandler {
 
 	// Ignored tags.
 	private final Set<String> ignored = new HashSet<>(10);
@@ -44,9 +44,9 @@ public class AIMLHandler extends DefaultHandler {
 	 * documents are parsed. The scope is defined as package for testing
 	 * purposes.
 	 */
-	final AIMLStack stack = new AIMLStack();
+	private final AIMLStack stack = new AIMLStack();
 
-	public AIMLHandler(String... ignore) {
+    AIMLHandler(String... ignore) {
 		ignored.addAll(Arrays.asList(ignore));
 	}
 
@@ -137,7 +137,7 @@ public class AIMLHandler extends DefaultHandler {
 			ignoreWhitespace = !"preserve".equals(attributes.getValue("xml:space"));
 	}
 
-	public List<Category> unload() {
+    List<Category> unload() {
 		List<Category> result = new LinkedList<>();
 
 		Object poped;

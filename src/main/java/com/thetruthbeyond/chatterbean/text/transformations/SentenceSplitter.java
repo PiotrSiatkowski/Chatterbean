@@ -42,12 +42,12 @@ public class SentenceSplitter {
 	private final Pattern splitPattern;
 
 	@Optimization
-	private final List<String> splitted = new LinkedList<>();
+	private final List<String> split = new LinkedList<>();
 
 	public SentenceSplitter(Map<String, String> protection, List<String> splitters) {
 		this.protection = protection;
 
-		// Assing splitters accoridng to sequence length order.
+		// Assign splitters according to sequence length order.
 		this.splitters = new ArrayList<>(splitters.size());
 		for(String splitter : splitters) {
 			if(this.splitters.isEmpty())
@@ -79,7 +79,7 @@ public class SentenceSplitter {
 	}
 	
 	public String[] splitOutput(String original) {
-		splitted.clear();
+		split.clear();
 
 		Matcher matcher = splitPattern.matcher(original);
 
@@ -92,17 +92,17 @@ public class SentenceSplitter {
 
 			String sentence = original.substring(beginIndex, matcher.end());
 			if(!splitters.contains(sentence.trim()))
-				splitted.add(sentence);
+				split.add(sentence);
 			beginIndex += sentence.length();
 		}
 		
 		if(beginIndex < original.length()) {
 			String sentence = original.substring(beginIndex, original.length());
 			if(!splitters.contains(sentence))
-				splitted.add(sentence);
+				split.add(sentence);
 		}
 
-		return splitted.toArray( new String[splitted.size()] );
+		return split.toArray( new String[split.size()] );
 	}
 	
 	private boolean isProtectedSequence(String original, int beginIndex, int endIndex) {
@@ -129,7 +129,7 @@ public class SentenceSplitter {
 	public String[] splitInput(String original) {
 		String prepared = protect(original);
 
-		splitted.clear();
+		split.clear();
 
 		Matcher matcher = splitPattern.matcher(prepared);
 
@@ -143,7 +143,7 @@ public class SentenceSplitter {
 
 			// If obtained sentence is in fact equal to one of the splitters.
 			if(!splitters.contains(sentence.trim()))
-				splitted.add(sentence);
+				split.add(sentence);
 			// Add the rest of the sentence.
 			beginIndex = endIndex + matcher.end() - matcher.start(1);
 		}
@@ -151,10 +151,10 @@ public class SentenceSplitter {
 		if(beginIndex < prepared.length()) {
 			String sentence = prepared.substring(beginIndex, prepared.length());
 			if(!splitters.contains(sentence))
-				splitted.add(sentence);
+				split.add(sentence);
 		}
 
-		return splitted.toArray( new String[splitted.size()] );
+		return split.toArray( new String[split.size()] );
 	}
 	
 	private String protect(String input) {

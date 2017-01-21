@@ -25,7 +25,7 @@ import com.thetruthbeyond.chatterbean.Match;
 import com.thetruthbeyond.chatterbean.aiml.Category;
 import com.thetruthbeyond.chatterbean.aiml.Text;
 
-public class Graphmaster {
+public class Graph {
 
 	private final Category DEFAULT_CATEGORY;
 
@@ -33,13 +33,13 @@ public class Graphmaster {
 	private final Set<String> patterns = new TreeSet<>();
 	
 	/** Constructs a new empty com.thetruthbeyond.chatterbean.graph. */
-	public Graphmaster() {
+	public Graph() {
 		DEFAULT_CATEGORY = new Category("*", new Text("I am sorry, my answers are limited. You must provide the right questions."));
 		append(DEFAULT_CATEGORY);
 	}
 	
 	/** Constructs a new tree, with this node as the root. */  
-	public Graphmaster(List<Category> categories) {
+	public Graph(List<Category> categories) {
 		DEFAULT_CATEGORY = new Category("*", new Text("I am sorry, my answers are limited. You must provide the right questions."));
 		append(DEFAULT_CATEGORY);
 		append(categories);

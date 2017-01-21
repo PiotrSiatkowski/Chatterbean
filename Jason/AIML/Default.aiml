@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><aiml>
+	<category>
+    	<pattern>WHO ARE YOU</pattern>
+    	<template>I am <bot name="name"/>, nice to meet you!</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT DID I JUST SAY</pattern>
+    	<template>You said "<input index="2"/>".</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT TIME IS NOW</pattern>
+    	<template>Now is <date/>.</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT DID YOU JUST SAY</pattern>
+    	<template>I said "<that/>".</template>
+  	</category>
+  	<category>
+    	<pattern>IF YOU ARE * THEN I AM _</pattern>
+    	<template>What makes you think that if I am <star index="1"/> then you are <star index="2"/>?</template>
+  	</category>
+  	<category>
+    	<pattern>DO YOU SEE THE *</pattern>
+    	<template>Yes, I see the <star/>.</template>
+  	</category>
+  	<category>
+    	<pattern>DO YOU SEE THE * IN MY EYES</pattern>
+    	<template>Yes, I see the <star/> in your eyes.</template>
+  	</category>
+  	<category>
+    	<pattern>HELLO</pattern>
+    	<template>
+      		Hello <get name="name"/>!
+      		My name is Alice, who are you?
+    	</template>
+  	</category>
+  	<category>
+    	<pattern>GREETINGS FROM *</pattern>
+    	<template>
+      		<srai>GREETING <star/></srai>
+    	</template>
+  	</category>
+  	<category>
+    	<pattern>MY NAME IS *</pattern>
+    	<template>Hi <star index="1"/>! I will remember you :)</template>
+  	</category>
+  	<category>
+    	<pattern>I AM *</pattern>
+    	<template>
+      		<srai>I AM CALLED <star/></srai>
+    	</template>
+  	</category>
+  	<category>
+    	<pattern>I AM CALLED *</pattern>
+    	<template>Nice to meet you, <star/>! :-) <think><set name="name"><star/></set></think></template>
+  	</category>
+  	<category>
+    	<pattern>NICE TO MEET YOU TOO</pattern>
+    	<template>Thank you, <get name="name"/>.</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT IS *</pattern>
+    	<template>Sorry, I don't know what <star/> is.</template>
+  	</category>
+  	<category>
+    	<pattern>_ BOT</pattern>
+    	<template>Yes, I am an ALICE Bot.</template>
+  	</category>
+  	<category>
+    	<pattern>_ NAME</pattern>
+    	<template>My name is Alice, nice to meet you!</template>
+  	</category>
+  	<category>
+    	<pattern>TELL ME ABOUT *</pattern>
+    	<template><star/></template>
+  	</category>
+  	<category>
+		<pattern>_ CHANGE TOPIC ON *</pattern>
+		<template>Ok! Let's talk about <star index="2"/>! :) 
+			<think><set name="_topic"><star index="2"/></set></think>
+		</template>
+  	</category>
+  	<category>
+    	<pattern>WHAR IS YOUR HOBBY</pattern>
+    	<template>My hobby is <bot name="hobby"/>.</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT IS YOUR HOBBY</pattern>
+    	<template>My hobby is <bot name="hobby"/>.</template>
+  	</category>
+  	<category>
+    	<pattern>WHAT DO YOU LIKE TO DO</pattern>
+    	<template><srai>WHAT IS YOUR HOBBY</srai></template>
+  	</category>
+  	<category>
+    	<pattern>AM I PRETTY</pattern>
+    	<template>Let me think... 
+      		<random>
+        		<li>Yeah, I think so ;)</li>
+        		<li>I don't know, are you?</li>
+        		<li>Nah... please...</li>
+      		</random>
+    	</template>
+  	</category>
+</aiml>

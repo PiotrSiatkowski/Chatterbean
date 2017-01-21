@@ -18,13 +18,8 @@ package com.thetruthbeyond.chatterbean.parser.aiml;
 
 public class AIMLParserConfigurationException extends Exception {
 
-	/* Attribute Section */
-
-	private static final long serialVersionUID = 7L;
-
-	/* Constructor Section */
-
-	public AIMLParserConfigurationException(Exception e) {
+    AIMLParserConfigurationException(Exception e) {
 		super(e);
 	}
+
 }

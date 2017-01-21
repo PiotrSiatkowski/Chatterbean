@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><aiml>
+	<topic name="Movies">
+    	<category>
+      		<pattern>I LOVE CARS YOU KNOW</pattern>
+      		<template>It's a great movie :)</template>
+    	</category>
+	</topic>
+</aiml>

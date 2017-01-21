@@ -18,9 +18,8 @@ package com.thetruthbeyond.chatterbean.aiml;
 
 public class AIMLXmlException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
-
-	public AIMLXmlException(String message) {
+    AIMLXmlException(String message) {
 		super(message);
 	}
+
 }

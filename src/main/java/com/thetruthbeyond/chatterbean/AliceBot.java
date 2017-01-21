@@ -25,7 +25,7 @@ import com.thetruthbeyond.chatterbean.functors.RandomFunctor;
 import com.thetruthbeyond.chatterbean.functors.SpecialSettingFunctor;
 import com.thetruthbeyond.chatterbean.functors.TopicFunctor;
 import com.thetruthbeyond.chatterbean.functors.UserFunctor;
-import com.thetruthbeyond.chatterbean.graph.Graphmaster;
+import com.thetruthbeyond.chatterbean.graph.Graph;
 import com.thetruthbeyond.chatterbean.parser.api.Explorer;
 import com.thetruthbeyond.chatterbean.text.structures.Request;
 import com.thetruthbeyond.chatterbean.text.structures.Response;
@@ -50,8 +50,8 @@ public class AliceBot {
 	/** Context information for this bot current conversation. */
 	private final Context context;
   
-	/** The Graphmaster maps user requests to AIML categories. */
-	private final Graphmaster graphmaster;
+	/** The Graph maps user requests to AIML categories. */
+	private final Graph graph;
     
 	/** The Transformations used to make proper read and response. */
 	private final Transformations transformations;
@@ -62,16 +62,16 @@ public class AliceBot {
 	/** Special use password. */
 	private String password = "";
 	
-	public AliceBot(Explorer explorer, Context context, Graphmaster graphmaster, Transformations transformations) {
+	public AliceBot(Explorer explorer, Context context, Graph graph, Transformations transformations) {
 		this.explorer = explorer;
 		this.context = context;
-		this.graphmaster = graphmaster;
+		this.graph = graph;
 		this.transformations = transformations;
 			
-		functors.put(TOPIC, 	new TopicFunctor(this));
-		functors.put(USER,  	new UserFunctor(this));
-		functors.put(DATE, 		new DateFunctor(this));
-		functors.put(RANDOM, 	new RandomFunctor(this));
+		functors.put(TOPIC, new TopicFunctor(this));
+		functors.put(USER, new UserFunctor(this));
+		functors.put(DATE, new DateFunctor(this));
+		functors.put(RANDOM, new RandomFunctor(this));
 	}
   
 	public Object launchFunction(String name, Object argument) {
@@ -91,7 +91,7 @@ public class AliceBot {
 		}
 	}
 
-	public Response respond(Request request) {
+	private Response respond(Request request) {
 		if(request.isWholeExpressionAnEmptyString())
 			return transformations.makeResponse("");
     
@@ -117,19 +117,29 @@ public class AliceBot {
 	private Response respond(Sentence sentence, Sentence that, Sentence topic) {
 		if(sentence.getNormalizedWordsSize() > 0) {
 			Match match = new Match(this, sentence, that, topic);
-			Category category = graphmaster.match(match);
+			Category category = graph.match(match);
 			if(category != null)
 				return transformations.makeResponse(category.process(match));			
 		}
 		
 		return transformations.makeResponse("");
 	}
-	
-	// Properties
-	public Explorer getExplorer() { return explorer; }
-	public Context getContext() { return context; }
-	public Graphmaster getGraphmaster() { return graphmaster; }
-	public Transformations getTransformations() { return transformations; }
+
+	public Explorer getExplorer() {
+		return explorer;
+	}
+
+	public Context getContext() {
+		return context;
+	}
+
+	public Graph getGraph() {
+		return graph;
+	}
+
+	public Transformations getTransformations() {
+		return transformations;
+	}
 	
 	public void setPassword(String password) {
 		this.password = password;

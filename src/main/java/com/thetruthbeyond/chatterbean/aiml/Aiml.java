@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Aiml extends AIMLElement {
 
-	public static final int CAPACITY = 30;
+	private static final int CAPACITY = 30;
 
 	// Tag id functionality.
 	@SuppressWarnings("FieldNameHidesFieldInSuperclass")

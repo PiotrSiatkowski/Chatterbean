@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><aiml>
+	<topic name="Fantasy">
+		<category>
+			<pattern>WHAT IF YOU FAVOURITE *</pattern>
+			<template>Game of Thrones of course!</template>
+		</category>
+		<category>
+			<pattern>_ GAME OF THRONES</pattern>
+			<template>I love this show :) What is your favourite character?</template>
+		</category>
+		<category>
+			<pattern>*</pattern>
+			<that>WHAT IS YOUR FAVOURITE CHARACTER</that>
+			<template>I like this hero too.
+				<think><set name="hero"><star/></set></think>
+			</template>
+		</category>
+		<category>
+			<pattern>WHAT IS MY FAVOURITE HERO</pattern>
+			<template>It's <get name="hero"/>, right?</template>
+		</category>
+	</topic>
+</aiml>
